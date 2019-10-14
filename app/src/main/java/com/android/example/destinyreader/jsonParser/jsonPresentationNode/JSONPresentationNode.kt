@@ -1,7 +1,7 @@
-package com.android.example.destinyreader.JSONParser.JSONPresentationNode
+package com.android.example.destinyreader.jsonParser.jsonPresentationNode
 
-import com.android.example.destinyreader.JSONParser.JSONDestinyObject.DisplayProperties
-import com.android.example.destinyreader.JSONParser.JSONDestinyObject.JSONDestinyObject
+import com.android.example.destinyreader.jsonParser.jsonDestinyObject.DisplayProperties
+import com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestinyObject
 
 class JSONPresentationNode(
     displayProperties: DisplayProperties,

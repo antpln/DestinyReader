@@ -1,4 +1,4 @@
-package com.android.example.destinyreader.JSONParser.JSONDestinyObject
+package com.android.example.destinyreader.jsonParser.jsonDestinyObject
 
 
 /*open class JSONDestinyObject(json : String) {

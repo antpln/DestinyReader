@@ -1,4 +1,4 @@
-package com.android.example.destinyreader.JSONParser.JSONParser
+package com.android.example.destinyreader.jsonParser.jsonParser
 
 class JSONParser {
     companion object {

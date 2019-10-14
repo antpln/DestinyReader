@@ -1,4 +1,4 @@
-package com.android.example.destinyreader.JSONParser.JSONPresentationNode
+package com.android.example.destinyreader.jsonParser.jsonPresentationNode
 
 class Children(
     val presentationNodes: List<ChildPresentationNode>,

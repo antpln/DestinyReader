@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.destinyreader.R
-import com.android.example.destinyreader.JSONParser.JSONPresentationNode.JSONPresentationNode
-import com.android.example.destinyreader.JSONParser.JSONParser.JSONParser
+import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
+import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser
 import com.android.example.destinyreader.databinding.MainItemBinding
 
 
@@ -34,10 +34,7 @@ class MainAdapter(val clickListener: PresentationNodeListener) : ListAdapter<JSO
         val icon : ImageView = binding.bookIcon
         val title : TextView = binding.bookTitleTextView
 
-        fun bind(
-            item: JSONPresentationNode,
-            clickListener: PresentationNodeListener
-        ) {
+        fun bind(item: JSONPresentationNode, clickListener: PresentationNodeListener) {
             val res = itemView.context.resources
 
             //TODO : Changer système icônes
@@ -49,7 +46,8 @@ class MainAdapter(val clickListener: PresentationNodeListener) : ListAdapter<JSO
             })
             title.text = item.displayProperties.name
             binding.clickListener = clickListener
-
+            binding.presentationNode = item
+            binding.executePendingBindings()
 
 
 
@@ -59,7 +57,6 @@ class MainAdapter(val clickListener: PresentationNodeListener) : ListAdapter<JSO
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = MainItemBinding.inflate(layoutInflater, parent, false)
-
                 return ViewHolder(binding)
             }
         }

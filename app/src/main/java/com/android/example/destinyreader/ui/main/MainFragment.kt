@@ -1,6 +1,7 @@
 package com.android.example.destinyreader.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,7 @@ class MainFragment : Fragment() {
 
         val adapter = MainAdapter(PresentationNodeListener{
             id -> Toast.makeText(context, "${id}", Toast.LENGTH_LONG).show()
+            Log.i("destinyreader", "Item clicked !")
         })
         binding.bookList.adapter = adapter
 

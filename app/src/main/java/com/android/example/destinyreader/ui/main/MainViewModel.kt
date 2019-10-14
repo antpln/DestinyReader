@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.example.destinyreader.database.DestinyDatabaseDao
-import com.android.example.destinyreader.JSONParser.JSONPresentationNode.JSONPresentationNode
-import com.android.example.destinyreader.JSONParser.JSONParser.JSONParser
+import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
+import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser
 import com.google.gson.Gson
 import kotlinx.coroutines.*
 

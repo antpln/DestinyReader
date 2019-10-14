@@ -5,7 +5,9 @@
     android:orientation="vertical">
 
     <data>
-
+        <variable
+            name="presentationNode"
+            type="com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode" />
         <variable
             name="clickListener"
             type="com.android.example.destinyreader.ui.main.PresentationNodeListener" />
@@ -14,7 +16,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:background="#000">
+        tools:background="#000"
+        android:onClick="@{() -> clickListener.onClick(presentationNode)}">
 
 
     <ImageView
