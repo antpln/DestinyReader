@@ -2,8 +2,8 @@ package com.android.example.destinyreader.database
 
 import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.huma.room_for_asset.RoomAsset
 
 @Database(entities = [DestinyPresentationNode::class, DestinyLore::class, DestinyRecord::class], version = 1, exportSchema = false)
 abstract class DestinyDatabase : RoomDatabase() {
@@ -61,16 +61,15 @@ abstract class DestinyDatabase : RoomDatabase() {
 
                 // If instance is `null` make a new database instance.
                 if (instance == null) {
-                    instance = Room.databaseBuilder(
+                    instance = RoomAsset.databaseBuilder(
                         context.applicationContext,
                         DestinyDatabase::class.java,
-                        "destiny_manifest"
+                        "destiny_manifest.db"
                     )
                         // Wipes and rebuilds instead of migrating if no Migration object.
                         // Migration is not part of this lesson. You can learn more about
                         // migration with Room in this blog post:
                         // https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929
-                        .createFromAsset("database/destiny_manifest")
                         .build()
                     // Assign INSTANCE to the newly created database.
                     INSTANCE = instance

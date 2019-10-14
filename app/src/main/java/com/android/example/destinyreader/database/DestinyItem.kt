@@ -10,8 +10,8 @@ data class DestinyPresentationNode(
     @PrimaryKey(autoGenerate=true)
     val id : Long = 0L,
 
-    @ColumnInfo(name="json")
-    val json : String = "")
+    @ColumnInfo(name="json", typeAffinity = ColumnInfo.BLOB)
+    val json : ByteArray?)
 
 
 @Entity(tableName="DestinyRecordDefinition")
@@ -20,8 +20,9 @@ data class DestinyRecord(
     @PrimaryKey(autoGenerate=true)
     val id : Long = 0L,
 
-    @ColumnInfo(name="json")
-    val json : String = "")
+    @ColumnInfo(name="json", typeAffinity = ColumnInfo.BLOB)
+    val json : ByteArray?)
+
 
 @Entity(tableName="DestinyLoreDefinition")
 data class DestinyLore(
@@ -29,6 +30,6 @@ data class DestinyLore(
     @PrimaryKey(autoGenerate=true)
     val id : Long = 0L,
 
-    @ColumnInfo(name="json")
-    val json : String = "")
+    @ColumnInfo(name="json", typeAffinity = ColumnInfo.BLOB)
+    val json : ByteArray?)
 

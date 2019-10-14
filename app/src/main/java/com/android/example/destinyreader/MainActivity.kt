@@ -1,7 +1,7 @@
 package com.android.example.destinyreader
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.android.example.destinyreader.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
