@@ -28,9 +28,9 @@ import com.android.example.destinyreader.ui.main.MainViewModel
  *
  * Provides the SleepDatabaseDao and context to the ViewModel.
  */
-class MainViewModelFactory(
-    private val dataSource: DestinyDatabaseDao,
-    private val application: Application) : ViewModelProvider.Factory {
+open class MainViewModelFactory(
+    protected val dataSource: DestinyDatabaseDao,
+    protected val application: Application) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {

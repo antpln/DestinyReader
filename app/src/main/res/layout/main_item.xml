@@ -6,18 +6,18 @@
 
     <data>
         <variable
-            name="presentationNode"
-            type="com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode" />
+            name="jsonObject"
+            type="com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestinyObject" />
         <variable
             name="clickListener"
-            type="com.android.example.destinyreader.ui.main.PresentationNodeListener" />
+            type="com.android.example.destinyreader.ui.abstractList.DestinyObjectListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:background="#000"
-        android:onClick="@{() -> clickListener.onClick(presentationNode)}">
+        android:onClick="@{() -> clickListener.onClick(jsonObject)}">
 
 
     <ImageView
@@ -43,6 +43,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/bookIcon"
             app:layout_constraintTop_toTopOf="parent"
+            app:bookTitleTextView="@{jsonObject}"
             tools:text="Celui qu'on appelle Cayde" />
 
 

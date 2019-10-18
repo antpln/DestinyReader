@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.android.example.destinyreader.ui.main.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_booksFragment"
+            app:destination="@id/booksFragment"
+            app:popUpTo="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/booksFragment"
+        android:name="com.android.example.destinyreader.ui.bookList.BooksFragment"
+        android:label="BooksFragment" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_booksFragment_to_loreFragment"
+            app:destination="@id/loreFragment"
+            app:popUpTo="@+id/booksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loreFragment"
+        android:name="com.android.example.destinyreader.ui.loreList.LoreFragment"
+        android:label="LoreFragment" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
+</navigation>

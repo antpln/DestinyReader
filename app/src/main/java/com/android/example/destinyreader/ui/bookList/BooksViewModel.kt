@@ -1,40 +1,35 @@
-package com.android.example.destinyreader.ui.main
+package com.android.example.destinyreader.ui.bookList
 
 import android.app.Application
+import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import com.android.example.destinyreader.database.DestinyDatabaseDao
-import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
+import com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestinyObject
 import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser
+import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser.Companion.hashToId
+import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
 import com.android.example.destinyreader.ui.abstractList.AbstractListViewModel
+import com.android.example.destinyreader.ui.main.MainViewModel
 import com.google.gson.Gson
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class MainViewModel(dataSource: DestinyDatabaseDao, application: Application) : AbstractListViewModel(application, dataSource, 0) {
+class BooksViewModel(dataSource: DestinyDatabaseDao,
+                     application: Application,
+                     val id : Long) : AbstractListViewModel(application, dataSource, id) {
 
-
-    /**
-     * viewModelJob allows us to cancel all coroutines started by this ViewModel.
-     */
-    private var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
-    override val _itemsList = MutableLiveData<List<JSONPresentationNode>>()
-    override val itemsList: LiveData<List<JSONPresentationNode>>
+    override val _itemsList =  MutableLiveData<List<JSONPresentationNode>>()
+    override val itemsList : LiveData<List<JSONPresentationNode>>
         get() = _itemsList
 
-    init {
-        uiScope.launch{
-                 _itemsList.value = scrapItemsFromDatabase(ID)
-        }
-    }
-
-    val ID : Long = 564676571
-    override suspend fun scrapItemsFromDatabase(id : Long): List<JSONPresentationNode> {
+    override suspend fun scrapItemsFromDatabase(id: Long): List<JSONPresentationNode> {
+        val ID = this.id
         return withContext(Dispatchers.IO) {
-            val binaryArray = database.getDestinyPresentationNode(ID).json
+            Log.i("destinyreader","Id :" + ID.toString())
+            val binaryArray = (database.getDestinyPresentationNode(hashToId(ID)) ?: database.getDestinyPresentationNode(ID)).json
             val string = String(requireNotNull(binaryArray), Charsets.UTF_8).dropLast(1)
             val mainPresentationNode = Gson().fromJson(
                 string,
@@ -63,6 +58,6 @@ class MainViewModel(dataSource: DestinyDatabaseDao, application: Application) : 
             items
         }
 
-    }
 
+    }
 }

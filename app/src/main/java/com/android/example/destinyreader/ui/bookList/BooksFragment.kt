@@ -1,4 +1,4 @@
-package com.android.example.destinyreader.ui.main
+package com.android.example.destinyreader.ui.bookList
 
 import android.os.Bundle
 import android.util.Log
@@ -13,44 +13,41 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.android.example.destinyreader.R
 import com.android.example.destinyreader.database.DestinyDatabase
-import com.android.example.destinyreader.databinding.MainFragmentBinding
-import com.android.example.destinyreader.ui.abstractList.AbstractListFragment
-import com.android.example.destinyreader.ui.abstractList.AbstractListViewModel
-import com.android.example.destinyreader.ui.abstractList.PresentationNodeListAdapter
-import com.android.example.destinyreader.ui.abstractList.PresentationNodeListener
-import com.example.android.destinyreader.ui.main.MainViewModelFactory
+import com.android.example.destinyreader.databinding.BooksFragmentBinding
+import com.android.example.destinyreader.ui.abstractList.*
 
-open class MainFragment : AbstractListFragment() {
-
+class BooksFragment() : AbstractListFragment() {
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = BooksFragment()
     }
 
-    override lateinit var viewModel: AbstractListViewModel
+    override  lateinit var viewModel: AbstractListViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        val binding : MainFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
-        binding.lifecycleOwner = this
+        val binding : BooksFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.books_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
         val datasource = DestinyDatabase.getInstance(application).destinyDatabaseDao
 
+        val args = BooksFragmentArgs.fromBundle(requireNotNull(arguments))
 
-        val viewModelFactory = MainViewModelFactory(datasource, application)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
-        binding.mainViewModel = viewModel
+
+        val viewModelFactory = BooksViewModelFactory(datasource, application, args.id)
+
+        viewModel = requireNotNull(ViewModelProviders.of(this, viewModelFactory).get(BooksViewModel::class.java) as? BooksViewModel ?: null)
+
+        binding.mainViewModel = viewModel as? BooksViewModel ?: null
 
         val adapter =
             PresentationNodeListAdapter(PresentationNodeListener { id ->
-                Toast.makeText(context, "${id}", Toast.LENGTH_LONG).show()
+                findNavController().navigate(BooksFragmentDirections.actionBooksFragmentToLoreFragment(id))
                 Log.i("destinyreader", "Item clicked !")
-                this.findNavController()
-                    .navigate(MainFragmentDirections.actionMainFragmentToBooksFragment(id))
             })
+
         binding.bookList.adapter = adapter
 
         adapter.submitList(viewModel.itemsList.value)
@@ -61,16 +58,13 @@ open class MainFragment : AbstractListFragment() {
             }
         })
 
-
-
-
+        binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(BooksViewModel::class.java)
     }
-
 
 }
