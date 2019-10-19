@@ -21,6 +21,7 @@ class MainViewModel(dataSource: DestinyDatabaseDao, application: Application) : 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+    override val title = MutableLiveData<String>()
     override val _itemsList = MutableLiveData<List<JSONPresentationNode>>()
     override val itemsList: LiveData<List<JSONPresentationNode>>
         get() = _itemsList
@@ -34,7 +35,7 @@ class MainViewModel(dataSource: DestinyDatabaseDao, application: Application) : 
     val ID : Long = 564676571
     override suspend fun scrapItemsFromDatabase(id : Long): List<JSONPresentationNode> {
         return withContext(Dispatchers.IO) {
-            val binaryArray = database.getDestinyPresentationNode(ID).json
+            val binaryArray = database.getDestinyPresentationNode(ID)!!.json
             val string = String(requireNotNull(binaryArray), Charsets.UTF_8).dropLast(1)
             val mainPresentationNode = Gson().fromJson(
                 string,
@@ -49,7 +50,7 @@ class MainViewModel(dataSource: DestinyDatabaseDao, application: Application) : 
             )
             mainPresentationNode.children.presentationNodes.forEach {
                 val string = String(
-                    requireNotNull(database.getDestinyPresentationNode(JSONParser.hashToId(it.presentationNodeHash)).json),
+                    requireNotNull(database.getDestinyPresentationNode(JSONParser.hashToId(it.presentationNodeHash))!!.json),
                     Charsets.UTF_8
                 ).dropLast(1)
                 items.add(

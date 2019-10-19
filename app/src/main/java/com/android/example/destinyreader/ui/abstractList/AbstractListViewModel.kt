@@ -21,6 +21,7 @@ abstract class AbstractListViewModel(application : Application, dataSource : Des
      */
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    abstract val title : MutableLiveData<String>
 
     abstract val _itemsList : MutableLiveData<out List<JSONDestinyObject>>
     open val itemsList : LiveData<out List<JSONDestinyObject>>

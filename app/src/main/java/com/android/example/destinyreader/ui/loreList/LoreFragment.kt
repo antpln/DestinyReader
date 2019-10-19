@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.android.example.destinyreader.R
 import com.android.example.destinyreader.database.DestinyDatabase
 import com.android.example.destinyreader.databinding.BooksFragmentBinding
@@ -49,7 +50,7 @@ class LoreFragment() : AbstractListFragment() {
         val adapter =
             RecordListAdapter(DestinyObjectListener { id ->
                 Toast.makeText(context, "${id}", Toast.LENGTH_LONG).show()
-                Log.i("destinyreader", "Item clicked !")
+                findNavController().navigate(LoreFragmentDirections.actionLoreFragmentToReaderFragment(id))
             })
 
         binding.loreList.adapter = adapter
@@ -60,6 +61,10 @@ class LoreFragment() : AbstractListFragment() {
             it.let {
                 adapter.submitList(it)
             }
+        })
+
+        viewModel.title.observe(this, Observer {
+            activity?.actionBar?.title = it
         })
 
         binding.lifecycleOwner = this

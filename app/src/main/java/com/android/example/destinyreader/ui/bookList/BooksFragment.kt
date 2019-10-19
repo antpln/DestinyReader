@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.android.example.destinyreader.MainActivity
 import com.android.example.destinyreader.R
 import com.android.example.destinyreader.database.DestinyDatabase
 import com.android.example.destinyreader.databinding.BooksFragmentBinding
@@ -58,7 +59,13 @@ class BooksFragment() : AbstractListFragment() {
             }
         })
 
+        viewModel.title.observe(this, Observer {
+            activity?.actionBar?.title = it
+        })
+
         binding.lifecycleOwner = this
+
+
         return binding.root
     }
 

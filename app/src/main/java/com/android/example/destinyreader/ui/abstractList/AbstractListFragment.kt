@@ -32,6 +32,7 @@ abstract class AbstractListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
     }
 
 

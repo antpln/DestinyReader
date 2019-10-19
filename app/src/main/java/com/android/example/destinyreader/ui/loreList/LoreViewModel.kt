@@ -18,6 +18,7 @@ class LoreViewModel(dataSource: DestinyDatabaseDao,
                      application: Application,
                      val id : Long) : AbstractListViewModel(application, dataSource, id) {
 
+    override val title = MutableLiveData<String>()
     override val _itemsList =  MutableLiveData<List<JSONRecord>>()
     override val itemsList : LiveData<List<JSONRecord>>
         get() = _itemsList
@@ -27,12 +28,13 @@ class LoreViewModel(dataSource: DestinyDatabaseDao,
         return withContext(Dispatchers.IO) {
             Log.i("destinyreader", "ID "+ ID.toString())
             Log.i("destinyreader", "Transformed ID "+ hashToId(ID).toString())
-            val binaryArray = database.getDestinyPresentationNode(ID).json
+            val binaryArray = database.getDestinyPresentationNode(ID)!!.json
             val string = String(requireNotNull(binaryArray), Charsets.UTF_8).dropLast(1)
             val mainPresentationNode = Gson().fromJson(
                 string,
                 JSONPresentationNode::class.java
             )
+            title.postValue(mainPresentationNode.displayProperties.name)
 
             Log.i("destinyreader", "Loaded " + mainPresentationNode.displayProperties.name)
             var items: MutableList<JSONRecord> = ArrayList()
@@ -42,14 +44,14 @@ class LoreViewModel(dataSource: DestinyDatabaseDao,
             )
             mainPresentationNode.children.records.forEach {
                 val string = String(
-                    requireNotNull(database.getDestinyRecord(hashToId(it.recordHash)).json),
+                    requireNotNull(database.getDestinyRecord(hashToId(it.recordHash))!!.json),
                     Charsets.UTF_8
                 ).dropLast(1)
                 val item =  Gson().fromJson(
                     string,
                     JSONRecord::class.java
                 )
-                if (item.displayProperties.name != mainPresentationNode.displayProperties.name) {
+                if ((item.loreHash != 0L) and (item.displayProperties.name != mainPresentationNode.displayProperties.name)) {
                     items.add(item)
                 }
             }

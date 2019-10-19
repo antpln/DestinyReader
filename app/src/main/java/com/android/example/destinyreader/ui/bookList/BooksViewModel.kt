@@ -21,6 +21,7 @@ class BooksViewModel(dataSource: DestinyDatabaseDao,
                      application: Application,
                      val id : Long) : AbstractListViewModel(application, dataSource, id) {
 
+    override val title = MutableLiveData<String>()
     override val _itemsList =  MutableLiveData<List<JSONPresentationNode>>()
     override val itemsList : LiveData<List<JSONPresentationNode>>
         get() = _itemsList
@@ -29,13 +30,13 @@ class BooksViewModel(dataSource: DestinyDatabaseDao,
         val ID = this.id
         return withContext(Dispatchers.IO) {
             Log.i("destinyreader","Id :" + ID.toString())
-            val binaryArray = (database.getDestinyPresentationNode(hashToId(ID)) ?: database.getDestinyPresentationNode(ID)).json
+            val binaryArray = (database.getDestinyPresentationNode(hashToId(ID)) ?: database.getDestinyPresentationNode(ID))!!.json
             val string = String(requireNotNull(binaryArray), Charsets.UTF_8).dropLast(1)
             val mainPresentationNode = Gson().fromJson(
                 string,
                 JSONPresentationNode::class.java
             )
-
+            title.postValue(mainPresentationNode.displayProperties.name)
             Log.i("DATABASE", mainPresentationNode.displayProperties.name)
             var items: MutableList<JSONPresentationNode> = ArrayList()
             Log.i(
@@ -44,7 +45,7 @@ class BooksViewModel(dataSource: DestinyDatabaseDao,
             )
             mainPresentationNode.children.presentationNodes.forEach {
                 val string = String(
-                    requireNotNull(database.getDestinyPresentationNode(JSONParser.hashToId(it.presentationNodeHash)).json),
+                    requireNotNull(database.getDestinyPresentationNode(JSONParser.hashToId(it.presentationNodeHash))!!.json),
                     Charsets.UTF_8
                 ).dropLast(1)
                 items.add(

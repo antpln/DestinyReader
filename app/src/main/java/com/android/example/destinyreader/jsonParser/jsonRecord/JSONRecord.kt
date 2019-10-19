@@ -6,6 +6,6 @@ import com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestin
 class JSONRecord(
     displayProperties: DisplayProperties,
     hash : Long,
-    loreHash : Long
+    val loreHash : Long
 
 ) : JSONDestinyObject(displayProperties, hash)

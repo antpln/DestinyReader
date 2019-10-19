@@ -40,7 +40,7 @@ class RecordListAdapter(clickListener: DestinyObjectListener) : AbstractListAdap
             title.text = item.displayProperties.name
 
             if (binding is MainItemBinding) {
-                binding.clickListener = clickListener as? RecordListener
+                binding.clickListener = clickListener
                 binding.jsonObject = item as? JSONDestinyObject
                 binding.executePendingBindings()
             } else {
@@ -58,7 +58,4 @@ class RecordListAdapter(clickListener: DestinyObjectListener) : AbstractListAdap
             }
         }
     }
-}
-class RecordListener(override val clickListener: (id : Long) -> Unit) : DestinyObjectListener(clickListener){
-    override fun onClick(jsonObject: JSONDestinyObject) = super.onClick(jsonObject)
 }

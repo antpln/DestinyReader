@@ -31,5 +31,17 @@
         <argument
             android:name="id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_loreFragment_to_readerFragment"
+            app:destination="@id/readerFragment"
+            app:popUpTo="@+id/loreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/readerFragment"
+        android:name="com.android.example.destinyreader.ui.reader.ReaderFragment"
+        android:label="ReaderFragment" >
+        <argument
+            android:name="id"
+            app:argType="long" />
     </fragment>
 </navigation>

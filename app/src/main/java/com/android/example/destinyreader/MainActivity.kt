@@ -12,4 +12,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun setActionBarTitle(string : String) {
+        supportActionBar?.setTitle(string)
+    }
+
 }
