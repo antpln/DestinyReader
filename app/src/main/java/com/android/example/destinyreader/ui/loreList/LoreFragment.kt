@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.android.example.destinyreader.MainActivity
 import com.android.example.destinyreader.R
 import com.android.example.destinyreader.database.DestinyDatabase
 import com.android.example.destinyreader.databinding.BooksFragmentBinding
@@ -49,7 +51,6 @@ class LoreFragment() : AbstractListFragment() {
 
         val adapter =
             RecordListAdapter(DestinyObjectListener { id ->
-                Toast.makeText(context, "${id}", Toast.LENGTH_LONG).show()
                 findNavController().navigate(LoreFragmentDirections.actionLoreFragmentToReaderFragment(id))
             })
 
@@ -64,10 +65,13 @@ class LoreFragment() : AbstractListFragment() {
         })
 
         viewModel.title.observe(this, Observer {
-            activity?.actionBar?.title = it
+            (activity as AppCompatActivity).supportActionBar?.setTitle(it)
         })
 
         binding.lifecycleOwner = this
+
+        (activity as AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         return binding.root
     }
 

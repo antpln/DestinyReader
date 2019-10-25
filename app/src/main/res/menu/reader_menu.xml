@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/text_size_plus"
+        android:icon="@drawable/ic_chevron_up_white_24dp"
+        android:title="text_size_plus"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/text_size_minus"
+        android:icon="@drawable/ic_chevron_down_white_24dp"
+        android:title="text_size_minus"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bookmark_button"
+        android:icon="@drawable/sharp_bookmark_border_white_24"
+        android:title="bookmark_button"
+        app:showAsAction="always" />
+</menu>

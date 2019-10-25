@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DestinyReader</string>
+    <string name="bookmarks_title">Marque-pages</string>
 </resources>

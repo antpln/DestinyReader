@@ -19,7 +19,6 @@ class MainViewModel(dataSource: DestinyDatabaseDao, application: Application) : 
      * viewModelJob allows us to cancel all coroutines started by this ViewModel.
      */
     private var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     override val title = MutableLiveData<String>()
     override val _itemsList = MutableLiveData<List<JSONPresentationNode>>()

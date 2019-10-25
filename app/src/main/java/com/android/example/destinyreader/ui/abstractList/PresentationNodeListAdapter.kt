@@ -1,14 +1,17 @@
 package com.android.example.destinyreader.ui.abstractList
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.android.example.destinyreader.R
+import com.android.example.destinyreader.api.ASSETS_BASE_URL
 import com.android.example.destinyreader.databinding.MainItemBinding
 import com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestinyObject
 import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
 import com.android.example.destinyreader.ui.abstractList.AbstractListFragment
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class PresentationNodeListAdapter(clickListener: DestinyObjectListener) : AbstractListAdapter(
     clickListener
@@ -28,15 +31,13 @@ class PresentationNodeListAdapter(clickListener: DestinyObjectListener) : Abstra
         override fun bind(item: JSONDestinyObject, clickListener: DestinyObjectListener) {
             val res = itemView.context.resources
 
-            //TODO : Changer système icônes
-            icon.setImageResource(
-                when (item.displayProperties.name) {
-                    "La Lumière" -> R.drawable.light
-                    "Les Ténèbres" -> R.drawable.darkness
-                    "Crépuscule et aube" -> R.drawable.dawn
-                    else -> R.drawable.cayde
-                }
-            )
+            Log.i("destinyreader", "URL : " + item.displayProperties.icon)
+
+            GlideApp.with(icon)
+                .load(ASSETS_BASE_URL + item.displayProperties.icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(icon)
+
             title.text = item.displayProperties.name
 
             if (binding is MainItemBinding) {

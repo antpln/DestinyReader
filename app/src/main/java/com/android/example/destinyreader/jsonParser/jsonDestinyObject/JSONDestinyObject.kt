@@ -16,13 +16,13 @@ data class DisplayProperties(val jsonObject: JSONObject) {
 }*/
 
 open class JSONDestinyObject(
-    val displayProperties : DisplayProperties,
+    var displayProperties : DisplayProperties,
     val hash : Long
 )
 
 class DisplayProperties(
     val name : String,
-    val icon : String,
+    var icon : String?,
     val description : String
 )
 

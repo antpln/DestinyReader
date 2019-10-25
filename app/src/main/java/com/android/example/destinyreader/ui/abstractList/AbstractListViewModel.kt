@@ -20,7 +20,7 @@ abstract class AbstractListViewModel(application : Application, dataSource : Des
      * viewModelJob allows us to cancel all coroutines started by this ViewModel.
      */
     private var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    protected val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     abstract val title : MutableLiveData<String>
 
     abstract val _itemsList : MutableLiveData<out List<JSONDestinyObject>>

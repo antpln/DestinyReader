@@ -20,16 +20,16 @@
         android:onClick="@{() -> clickListener.onClick(jsonObject)}">
 
 
-    <ImageView
-        android:id="@+id/bookIcon"
-        android:layout_width="84dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/cayde" />
+        <ImageView
+            android:id="@+id/bookIcon"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/placeholder" />
 
         <TextView
             android:id="@+id/bookTitleTextView"
@@ -38,7 +38,8 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/open_sans_light"
             android:textColor="?attr/colorButtonNormal"
-            android:textSize="16sp"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="16sp"
             android:typeface="sans"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/bookIcon"

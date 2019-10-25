@@ -11,6 +11,7 @@ import com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestin
 import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser
 import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser.Companion.hashToId
 import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
+import com.android.example.destinyreader.jsonParser.jsonRecord.JSONRecord
 import com.android.example.destinyreader.ui.abstractList.AbstractListViewModel
 import com.android.example.destinyreader.ui.main.MainViewModel
 import com.google.gson.Gson
@@ -48,12 +49,27 @@ class BooksViewModel(dataSource: DestinyDatabaseDao,
                     requireNotNull(database.getDestinyPresentationNode(JSONParser.hashToId(it.presentationNodeHash))!!.json),
                     Charsets.UTF_8
                 ).dropLast(1)
-                items.add(
-                    Gson().fromJson(
+                var item : JSONPresentationNode= Gson().fromJson(
                         string,
                         JSONPresentationNode::class.java
                     )
-                )
+                if (item.displayProperties.name != "") {
+                    if (item.displayProperties.icon == null) {
+                        val childHash = item.children.records[0].recordHash
+                        val childBinary = (database.getDestinyRecord(hashToId(childHash))
+                            ?: database.getDestinyRecord(childHash))!!.json
+                        val childString =
+                            String(requireNotNull(childBinary), Charsets.UTF_8).dropLast(1)
+
+                        val child = Gson().fromJson(
+                            childString,
+                            JSONRecord::class.java
+                        )
+
+                        item.displayProperties.icon = child.displayProperties.icon
+                    }
+                    items.add(item)
+                }
             }
             Log.i("destinyreader", "items size" + items.size.toString())
             items

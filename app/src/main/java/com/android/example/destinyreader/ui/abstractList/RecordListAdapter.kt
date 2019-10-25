@@ -5,10 +5,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.android.example.destinyreader.R
+import com.android.example.destinyreader.api.ASSETS_BASE_URL
 import com.android.example.destinyreader.databinding.MainItemBinding
 import com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestinyObject
 import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
 import com.android.example.destinyreader.ui.abstractList.AbstractListFragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+
 
 class RecordListAdapter(clickListener: DestinyObjectListener) : AbstractListAdapter(
     clickListener
@@ -27,16 +31,10 @@ class RecordListAdapter(clickListener: DestinyObjectListener) : AbstractListAdap
 
         override fun bind(item: JSONDestinyObject, clickListener: DestinyObjectListener) {
             val res = itemView.context.resources
-
-            //TODO : Changer système icônes
-            icon.setImageResource(
-                when (item.displayProperties.name) {
-                    "La Lumière" -> R.drawable.light
-                    "Les Ténèbres" -> R.drawable.darkness
-                    "Crépuscule et aube" -> R.drawable.dawn
-                    else -> R.drawable.cayde
-                }
-            )
+            GlideApp.with(icon)
+                .load(ASSETS_BASE_URL + item.displayProperties.icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(icon)
             title.text = item.displayProperties.name
 
             if (binding is MainItemBinding) {

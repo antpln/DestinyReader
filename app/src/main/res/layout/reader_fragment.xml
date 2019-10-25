@@ -16,45 +16,30 @@
         android:background="@color/colorPrimary"
         android:color="@color/colorPrimary">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:background="@color/colorPrimary"
-            android:color="@color/colorPrimary"
-            android:fontFamily="@font/open_sans_light"
-            android:paddingStart="25dp"
-            android:paddingEnd="25dp"
-            android:text="@{readerViewModel.title}"
-            android:textColor="#FFFFFF"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Titre" />
-
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
             android:color="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/editText2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15sp"
-                android:layout_marginEnd="15sp"
                 android:ems="10"
+                android:fontFamily="@font/open_sans_light"
                 android:gravity="start|top"
-                android:textColor="#FFFFFF"
-                android:textSize="16dp"
-                android:text="@{readerViewModel.text}"/>
+                android:paddingStart="15sp"
+                android:paddingTop="15sp"
+                android:paddingEnd="15sp"
+                android:paddingBottom="15sp"
+                android:text="@{readerViewModel.text}"
+                android:textColor="#FAFAFA"
+                android:textSize="@{readerViewModel.textSize}"
+                tools:text="    TestTest\n TestTestTestTestTestTestTestTest TestTestTestTestTestTest" />
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

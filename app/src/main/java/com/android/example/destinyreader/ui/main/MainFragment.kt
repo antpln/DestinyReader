@@ -2,10 +2,9 @@ package com.android.example.destinyreader.ui.main
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -19,6 +18,7 @@ import com.android.example.destinyreader.ui.abstractList.AbstractListViewModel
 import com.android.example.destinyreader.ui.abstractList.PresentationNodeListAdapter
 import com.android.example.destinyreader.ui.abstractList.PresentationNodeListener
 import com.example.android.destinyreader.ui.main.MainViewModelFactory
+import kotlinx.android.synthetic.main.main_activity.*
 
 open class MainFragment : AbstractListFragment() {
 
@@ -46,7 +46,6 @@ open class MainFragment : AbstractListFragment() {
 
         val adapter =
             PresentationNodeListAdapter(PresentationNodeListener { id ->
-                Toast.makeText(context, "${id}", Toast.LENGTH_LONG).show()
                 Log.i("destinyreader", "Item clicked !")
                 this.findNavController()
                     .navigate(MainFragmentDirections.actionMainFragmentToBooksFragment(id))
@@ -61,6 +60,10 @@ open class MainFragment : AbstractListFragment() {
             }
         })
 
+        (activity as AppCompatActivity)?.supportActionBar?.title = "DestinyReader"
+        (activity as AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        setHasOptionsMenu(true)
+
 
 
 
@@ -72,5 +75,23 @@ open class MainFragment : AbstractListFragment() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.main_menu, menu)
 
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        when(id) {
+            R.id.bookmarks_button -> {findNavController().navigate(MainFragmentDirections.actionMainFragmentToBookmarksFragment())}
+
+        }
+
+
+
+        return super.onOptionsItemSelected(item)
+    }
 }
