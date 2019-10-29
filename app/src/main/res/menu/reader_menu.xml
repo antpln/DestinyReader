@@ -13,8 +13,8 @@
         android:title="text_size_minus"
         app:showAsAction="always" />
     <item
-        android:id="@+id/bookmark_button"
-        android:icon="@drawable/sharp_bookmark_border_white_24"
-        android:title="bookmark_button"
+        android:id="@+id/share_button"
+        android:icon="@drawable/sharp_share_white_24"
+        android:title="share_button"
         app:showAsAction="always" />
 </menu>

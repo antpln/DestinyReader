@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package com.example.android.destinyreader.ui.main
+package com.android.example.destinyreader.ui.main
 
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.destinyreader.database.DestinyDatabaseDao
-import com.android.example.destinyreader.ui.main.MainViewModel
 
 /**
  * This is pretty much boiler plate code for a ViewModel Factory.

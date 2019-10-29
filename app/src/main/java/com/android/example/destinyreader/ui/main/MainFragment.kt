@@ -3,10 +3,8 @@ package com.android.example.destinyreader.ui.main
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -17,8 +15,6 @@ import com.android.example.destinyreader.ui.abstractList.AbstractListFragment
 import com.android.example.destinyreader.ui.abstractList.AbstractListViewModel
 import com.android.example.destinyreader.ui.abstractList.PresentationNodeListAdapter
 import com.android.example.destinyreader.ui.abstractList.PresentationNodeListener
-import com.example.android.destinyreader.ui.main.MainViewModelFactory
-import kotlinx.android.synthetic.main.main_activity.*
 
 open class MainFragment : AbstractListFragment() {
 

@@ -7,4 +7,8 @@
         android:icon="@drawable/sharp_bookmarks_white_24"
         android:title="bookmarks_button"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/settings_button"
+        android:icon="@drawable/sharp_build_white_24"
+        android:title="Item" />
 </menu>

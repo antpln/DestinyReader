@@ -34,12 +34,5 @@ abstract class AbstractListViewModel(application : Application, dataSource : Des
     }
 
 
-    fun itemsJob()  {
-        uiScope.launch {
-            _itemsList.value = scrapItemsFromDatabase()
-        }
-        Log.i("destinyreader", "Items loaded :" + itemsList.value?.size)
-        return
-    }
     abstract suspend fun scrapItemsFromDatabase(id : Long = 0) : List<JSONDestinyObject>
 }

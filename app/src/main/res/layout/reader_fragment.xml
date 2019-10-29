@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <data>
+
         <variable
             name="readerViewModel"
-            type="com.android.example.destinyreader.ui.reader.ReaderViewModel"/>
+            type="com.android.example.destinyreader.ui.reader.ReaderViewModel" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:color="@color/colorPrimary">
+        android:layout_width="match_parent">
+
 
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:color="@color/colorPrimary"
+            android:color="?attr/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -35,12 +38,19 @@
                 android:paddingStart="15sp"
                 android:paddingTop="15sp"
                 android:paddingEnd="15sp"
-                android:paddingBottom="15sp"
+                android:paddingBottom="150sp"
                 android:text="@{readerViewModel.text}"
                 android:textColor="#FAFAFA"
                 android:textSize="@{readerViewModel.textSize}"
                 tools:text="    TestTest\n TestTestTestTestTestTestTestTest TestTestTestTestTestTest" />
         </ScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bookmark_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:icon="@drawable/sharp_bookmark_border_white_24" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

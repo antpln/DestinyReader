@@ -5,18 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.android.example.destinyreader.R
 import com.android.example.destinyreader.api.ASSETS_BASE_URL
 import com.android.example.destinyreader.databinding.MainItemBinding
 import com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestinyObject
-import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
-import com.android.example.destinyreader.ui.abstractList.AbstractListFragment
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class PresentationNodeListAdapter(clickListener: DestinyObjectListener) : AbstractListAdapter(
     clickListener
 ) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PresentationNodeListAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         return ViewHolder.from(parent)
 
@@ -52,7 +49,7 @@ class PresentationNodeListAdapter(clickListener: DestinyObjectListener) : Abstra
 
 
         companion object {
-            fun from(parent: ViewGroup): PresentationNodeListAdapter.ViewHolder {
+            fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = MainItemBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
@@ -61,5 +58,4 @@ class PresentationNodeListAdapter(clickListener: DestinyObjectListener) : Abstra
     }
 }
 class PresentationNodeListener(override val clickListener: (id : Long) -> Unit) : DestinyObjectListener(clickListener){
-    override fun onClick(jsonObject: JSONDestinyObject) = super.onClick(jsonObject)
 }

@@ -11,9 +11,7 @@ import com.android.example.destinyreader.database.BookmarkDatabaseDao
 import com.android.example.destinyreader.database.BookmarkItem
 import com.android.example.destinyreader.database.DestinyDatabaseDao
 import com.android.example.destinyreader.jsonParser.jsonLore.JSONLore
-import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser
 import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser.Companion.hashToId
-import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
 import com.android.example.destinyreader.jsonParser.jsonRecord.JSONRecord
 import com.google.gson.Gson
 import kotlinx.coroutines.*
@@ -38,7 +36,7 @@ class ReaderViewModel(val datasource:DestinyDatabaseDao, val bookmarkDatasource 
 
 
     val buttonState = Transformations.map(bookmark, {
-        it -> it.isActive
+        it.isActive
     })
 
 

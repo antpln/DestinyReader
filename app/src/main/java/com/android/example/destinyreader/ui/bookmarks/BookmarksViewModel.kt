@@ -4,15 +4,10 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
-import com.android.example.destinyreader.R
 import com.android.example.destinyreader.database.BookmarkDatabaseDao
 import com.android.example.destinyreader.database.BookmarkItem
 import com.android.example.destinyreader.database.DestinyDatabaseDao
-import com.android.example.destinyreader.database.DestinyLore
-import com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestinyObject
-import com.android.example.destinyreader.jsonParser.jsonLore.JSONLore
 import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser.Companion.hashToId
 import com.android.example.destinyreader.jsonParser.jsonRecord.JSONRecord
 import com.android.example.destinyreader.ui.abstractList.AbstractListViewModel
@@ -25,7 +20,7 @@ class BookmarksViewModel(
 
     val dataSource : DestinyDatabaseDao,
     val application : Application,
-    val bookmarksDatasource : BookmarkDatabaseDao
+    bookmarksDatasource : BookmarkDatabaseDao
 ) : AbstractListViewModel(application, dataSource, 0){
 
     override val title = MutableLiveData<String>()

@@ -1,19 +1,14 @@
 package com.android.example.destinyreader.ui.bookList
 
 import android.app.Application
-import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProviders
 import com.android.example.destinyreader.database.DestinyDatabaseDao
-import com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestinyObject
-import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser
 import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser.Companion.hashToId
 import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
 import com.android.example.destinyreader.jsonParser.jsonRecord.JSONRecord
 import com.android.example.destinyreader.ui.abstractList.AbstractListViewModel
-import com.android.example.destinyreader.ui.main.MainViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -46,7 +41,7 @@ class BooksViewModel(dataSource: DestinyDatabaseDao,
             )
             mainPresentationNode.children.presentationNodes.forEach {
                 val string = String(
-                    requireNotNull(database.getDestinyPresentationNode(JSONParser.hashToId(it.presentationNodeHash))!!.json),
+                    requireNotNull(database.getDestinyPresentationNode(hashToId(it.presentationNodeHash))!!.json),
                     Charsets.UTF_8
                 ).dropLast(1)
                 var item : JSONPresentationNode= Gson().fromJson(

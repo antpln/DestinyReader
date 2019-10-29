@@ -1,27 +1,23 @@
 package com.android.example.destinyreader.ui.loreList
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.android.example.destinyreader.MainActivity
 import com.android.example.destinyreader.R
 import com.android.example.destinyreader.database.DestinyDatabase
-import com.android.example.destinyreader.databinding.BooksFragmentBinding
 import com.android.example.destinyreader.databinding.LoreFragmentBinding
-import com.android.example.destinyreader.ui.abstractList.*
-import com.android.example.destinyreader.ui.bookList.BooksFragmentArgs
-import com.android.example.destinyreader.ui.bookList.BooksViewModel
-import com.android.example.destinyreader.ui.bookList.BooksViewModelFactory
+import com.android.example.destinyreader.ui.abstractList.AbstractListFragment
+import com.android.example.destinyreader.ui.abstractList.AbstractListViewModel
+import com.android.example.destinyreader.ui.abstractList.DestinyObjectListener
+import com.android.example.destinyreader.ui.abstractList.RecordListAdapter
 
-class LoreFragment() : AbstractListFragment() {
+class LoreFragment : AbstractListFragment() {
     companion object {
         fun newInstance() = LoreFragment()
     }

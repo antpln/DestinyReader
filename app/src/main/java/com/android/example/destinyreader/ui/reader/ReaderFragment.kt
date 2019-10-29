@@ -2,6 +2,7 @@ package com.android.example.destinyreader.ui.reader
 
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -17,31 +18,25 @@ import com.android.example.destinyreader.database.DestinyDatabase
 import com.android.example.destinyreader.databinding.ReaderFragmentBinding
 
 
-class ReaderFragment() : Fragment() {
+class ReaderFragment : Fragment() {
 
 
     val MY_PREFS_NAME: String = "DestinyReaderPrefs"
 
     companion object {
-        fun newInstance() = ReaderFragment()
     }
 
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
 
     lateinit var viewModel : ReaderViewModel
     lateinit var sharedPrefs : SharedPreferences
     lateinit var editor: SharedPreferences.Editor
-    lateinit var bookmarkState : MutableLiveData<Boolean>
-    lateinit var buttonIcon : LiveData<Int>
+    lateinit var binding : ReaderFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding : ReaderFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.reader_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.reader_fragment, container, false)
         val application : Application = requireNotNull(this.activity).application
         val datasource = DestinyDatabase.getInstance(application).destinyDatabaseDao
         val bookmarkDatasource = BookmarkDatabase.getInstance(application).bookmarkDatabaseDao
@@ -66,8 +61,13 @@ class ReaderFragment() : Fragment() {
         setHasOptionsMenu(true)
 
         val readerTextSize : LiveData<String> = Transformations.map(viewModel.textSize, {
-                it -> it.toString() + "sp"
+            it.toString() + "sp"
         })
+
+        binding.bookmarkButton.setOnClickListener {
+            viewModel.bookmark.value = BookmarkItem(viewModel.ID, !(viewModel.bookmark.value!!.isActive))
+            viewModel.updateBookmark(requireNotNull(viewModel.bookmark?.value))
+        }
 
 
 
@@ -87,12 +87,12 @@ class ReaderFragment() : Fragment() {
             }
         })
         buttonIcon.observe(this, Observer {
-            optionsMenu.findItem(R.id.bookmark_button).setIcon(it)
+            binding.bookmarkButton.setImageResource(it)
             Log.i("destinyreader", "ICON CHANGED : " + it)
         })
 
         viewModel.bookmark.observe(this, Observer{
-            it -> Log.i("destinyreader", "BOOKMARK ID : " + it.id + " ACTIVE :" + it.isActive)
+            Log.i("destinyreader", "BOOKMARK ID : " + it.id + " ACTIVE :" + it.isActive)
         })
 
 
@@ -105,22 +105,28 @@ class ReaderFragment() : Fragment() {
         val id = item.itemId
         when(id) {
             R.id.text_size_plus -> {
-                viewModel.textSize.value = viewModel.textSize.value?.plus(1);
+                viewModel.textSize.value = viewModel.textSize.value?.plus(1)
                 editor.putInt("textSize", requireNotNull(viewModel.textSize.value))
                 editor.commit()
-                return true;
+                return true
             }
             R.id.text_size_minus-> {
-                viewModel.textSize.value = viewModel.textSize.value?.minus(1);
+                viewModel.textSize.value = viewModel.textSize.value?.minus(1)
                 editor.putInt("textSize", requireNotNull(viewModel.textSize.value))
                 editor.commit()
-                return true;
+                return true
             }
 
-            R.id.bookmark_button -> {
-                    viewModel.bookmark.value = BookmarkItem(viewModel.ID, !(viewModel.bookmark.value!!.isActive))
-                    viewModel.updateBookmark(requireNotNull(viewModel.bookmark?.value))
-                    return true
+            R.id.share_button -> {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, viewModel.title.value + "\n \n" +viewModel._text.value)
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, viewModel.title.value)
+                startActivity(shareIntent)
+                return true
             }
 
             else -> {return false}

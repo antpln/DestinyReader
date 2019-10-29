@@ -4,13 +4,15 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.android.example.destinyreader.database.DestinyDatabaseDao
-import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
 import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser
+import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
 import com.android.example.destinyreader.ui.abstractList.AbstractListViewModel
 import com.google.gson.Gson
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainViewModel(dataSource: DestinyDatabaseDao, application: Application) : AbstractListViewModel(application, dataSource, 0) {
 

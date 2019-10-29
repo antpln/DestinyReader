@@ -20,4 +20,8 @@ interface DestinyDatabaseDao {
     @Query("SELECT * FROM DestinyRecordDefinition WHERE id=:id")
     fun getDestinyRecord(id : Long) : DestinyRecord?
 
+    @Query("SELECT * FROM DestinyInventoryItemDefinition WHERE json LIKE '%loreHash'")
+    fun getAllItemsWithLore(): LiveData<List<DestinyInventoryItem>>
+
+
 }

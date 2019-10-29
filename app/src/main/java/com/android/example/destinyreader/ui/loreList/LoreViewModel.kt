@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.example.destinyreader.database.DestinyDatabaseDao
-import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser
 import com.android.example.destinyreader.jsonParser.jsonParser.JSONParser.Companion.hashToId
 import com.android.example.destinyreader.jsonParser.jsonPresentationNode.JSONPresentationNode
 import com.android.example.destinyreader.jsonParser.jsonRecord.JSONRecord

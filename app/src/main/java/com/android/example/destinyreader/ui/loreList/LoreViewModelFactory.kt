@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.destinyreader.database.DestinyDatabaseDao
-import com.android.example.destinyreader.ui.main.MainViewModel
 
 open class LoreViewModelFactory(
     protected val dataSource: DestinyDatabaseDao,

@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.destinyreader.database.BookmarkDatabaseDao
 import com.android.example.destinyreader.database.DestinyDatabaseDao
-import com.android.example.destinyreader.ui.loreList.LoreViewModel
 
 class ReaderViewModelFactory (
     protected val dataSource: DestinyDatabaseDao,
