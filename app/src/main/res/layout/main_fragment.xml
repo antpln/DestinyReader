@@ -6,7 +6,7 @@
     <data>
         <variable
             name="mainViewModel"
-            type="com.android.example.destinyreader.ui.abstractList.AbstractListViewModel" />
+            type="com.plin.destinyreader.ui.abstractList.AbstractListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,46 +7,57 @@
     <data>
         <variable
             name="jsonObject"
-            type="com.android.example.destinyreader.jsonParser.jsonDestinyObject.JSONDestinyObject" />
+            type="com.plin.destinyreader.jsonParser.jsonDestinyObject.JSONDestinyObject" />
         <variable
             name="clickListener"
-            type="com.android.example.destinyreader.ui.abstractList.DestinyObjectListener" />
+            type="com.plin.destinyreader.ui.abstractList.DestinyObjectListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> clickListener.onClick(jsonObject)}"
-        tools:background="">
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp">
 
-
-        <ImageView
-            android:id="@+id/bookIcon"
-            android:layout_width="84dp"
-            android:layout_height="84dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/placeholder" />
-
-        <TextView
-            android:id="@+id/bookTitleTextView"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/open_sans_light"
-            android:textColor="?attr/colorButtonNormal"
-            android:typeface="sans"
-            app:autoSizeMaxTextSize="16sp"
-            app:autoSizeTextType="uniform"
-            app:bookTitleTextView="@{jsonObject}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/bookIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Celui qu'on appelle Cayde" />
+            android:onClick="@{() -> clickListener.onClick(jsonObject)}"
+            tools:background="">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/bookIcon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/cayde" />
+
+            <TextView
+                android:id="@+id/bookTitleTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/open_sans_light"
+                android:textColor="?attr/colorButtonNormal"
+                android:typeface="sans"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeTextType="uniform"
+                app:bookTitleTextView="@{jsonObject}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bookIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Celui qu'on appelle Cayde" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
     </layout>

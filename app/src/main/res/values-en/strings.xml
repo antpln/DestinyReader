@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="bookmarks_title">Bookmarks</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="restart">RESTART</string>
+    <string name="update_succes">Update succes. Restart to apply changes</string>
+    <string name="update_now">UPDATE NOW</string>
+    <string name="update_required">A database update is available.</string>
+    <string name="title_activity_reader">Loading</string>
+    <string name="messages_header">Messages</string>
 </resources>

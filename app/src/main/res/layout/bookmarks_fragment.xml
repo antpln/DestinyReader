@@ -6,7 +6,7 @@
     <data>
         <variable
             name="mainViewModel"
-            type="com.android.example.destinyreader.ui.bookmarks.BookmarksViewModel" />
+            type="com.plin.destinyreader.ui.bookmarks.BookmarksViewModel" />
 
     </data>
 

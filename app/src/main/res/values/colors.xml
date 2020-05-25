@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#0F0F0F</color>
-    <color name="colorPrimaryDark">#181818</color>
-    <color name="colorAccent">#FFD600</color>
-    <color name="lightRed">#100000</color>
-    <color name="Shadowkeep">#6F0404</color>
 </resources>

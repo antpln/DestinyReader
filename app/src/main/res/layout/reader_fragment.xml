@@ -10,13 +10,51 @@
 
         <variable
             name="readerViewModel"
-            type="com.android.example.destinyreader.ui.reader.ReaderViewModel" />
+            type="com.plin.destinyreader.ui.reader.ReaderViewModel" />
 
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cayde"
+                    app:layout_collapseMode="parallax" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
 
         <ScrollView

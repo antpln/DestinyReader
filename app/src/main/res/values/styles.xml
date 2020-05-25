@@ -1,42 +1,57 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="Shadowkeep" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Shadowkeep" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#6F0404</item>
-        <item name="colorPrimaryDark">#550404</item>
-        <item name="android:windowBackground">#0F0F0F</item>
-        <item name="colorAccent">#002B00</item>
+        <item name="colorPrimary">#b00000</item>
+        <item name="colorPrimaryVariant">#790000</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#00BC00</item>
+        <item name="colorSurface">#181818</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="android:colorBackground">#000000</item>
+        <item name="colorOnBackground">#FFFFFF</item>
+        <item name="android:windowBackground">#000000</item>
     </style>
+
+
+    <style name="Shadowkeep.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Shadowkeep.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!-- Base application theme. -->
+    <style name="Warmind" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#FF9D06</item>
+        <item name="colorPrimaryDark">#c66e00</item>
+        <item name="android:windowBackground">#030303</item>
+        <item name="colorAccent">#066AFF</item>
+    </style>
+
+    <style name="Warmind.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Warmind.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Forsaken" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">#6D00EA</item>
-        <item name="colorPrimaryDark">#600996</item>
-        <item name="android:windowBackground">#0F0F0F</item>
-        <item name="colorAccent">#999900</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#6a1b9a</item>
+        <item name="colorPrimaryDark">#38006b</item>
+        <item name="android:windowBackground">#030303</item>
+        <item name="colorAccent">#ffa806</item>
     </style>
 
-    <style name="Curse_of_Osiris">
-        <item name="colorPrimary">#F7B900</item>
-        <item name="colorPrimaryDark">#BD8E00</item>
-        <item name="android:windowBackground">#0F0F0F</item>
-        <item name="colorAccent">#FFFF00</item>
+    <style name="Forsaken.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Red_War">
-        <item name="colorPrimary">#FF0000</item>
-        <item name="colorPrimaryDark">#AA0000</item>
-        <item name="android:windowBackground">#180F0F</item>
-        <item name="colorAccent">#FF0000</item>
-    </style>
-
-
-    <style name="Taken_King">
-        <item name="colorPrimary">#141414</item>
-        <item name="colorPrimaryDark">#0C0C0C</item>
-        <item name="android:windowBackground">#000000</item>
-        <item name="colorAccent">#6F0404</item>
-    </style>
+    <style name="Forsaken.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
 </resources>

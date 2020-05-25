@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="bookmarks_title">Marque-pages</string>
+    <string name="title_activity_settings">Paramètres</string>
+    <string name="restart">REDEMARRER</string>
+    <string name="update_succes">La mise à jour a été réalisée avec succès. Un redémarrage de l\'application est nécéssaire.</string>
+    <string name="update_now">METTRE A JOUR</string>
+    <string name="update_required">Une mise à jour de la base de données est disponible</string>
+    <string name="title_activity_reader">Chargement</string>
+    <string name="messages_header">Messages</string>
 </resources>
