@@ -51,6 +51,7 @@ class Reader : AppCompatActivity() {
         editor = sharedPrefs.edit()
 
 
+
         binding.lifecycleOwner = this
 
         //setHasOptionsMenu(true)

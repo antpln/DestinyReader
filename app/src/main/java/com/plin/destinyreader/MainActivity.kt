@@ -9,8 +9,6 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.github.kittinunf.fuel.Fuel
 import com.google.android.material.snackbar.Snackbar
 import com.plin.destinyreader.api.DestinyAPI
@@ -61,8 +59,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun goToMainDisplay() {
-        Navigation.findNavController(this, R.id.nav_host_fragment)
-            .navigate(R.id.action_startFragment_to_mainFragment)
+        val controller = Navigation.findNavController(this, R.id.nav_host_fragment)
+        if (controller.currentDestination?.id == R.id.startFragment) {
+            controller.navigate(R.id.action_startFragment_to_mainFragment)
+        }
         checkForUpdates()
         Log.i("destinyreader", "PATH " + applicationInfo.dataDir)
     }
@@ -179,7 +179,10 @@ class MainActivity : AppCompatActivity() {
                     uiScope.launch {
                         unzip(applicationInfo.dataDir + "/cache/temp_database.zip")
                         getSharedPreferences("DestinyReaderPrefs", Context.MODE_PRIVATE).edit()
-                            .putString("database_version", lastDatabaseVersion).apply()
+                            .putString("database_version", lastDatabaseVersion)
+                            .putBoolean("update", true)
+                            .apply()
+
                         Snackbar.make(
                             findViewById(R.id.nav_host_fragment),
                             getString(R.string.update_succes),
@@ -221,8 +224,15 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     uiScope.launch {
                         unzip(applicationInfo.dataDir + "/cache/temp_database.zip")
+                        Log.i(
+                            "destinyreader",
+                            "Database File Unzipped : " + File(applicationInfo.dataDir + "/databases/destiny_manifest.db").exists()
+                                .toString()
+                        )
                         getSharedPreferences("DestinyReaderPrefs", Context.MODE_PRIVATE).edit()
-                            .putString("database_version", lastDatabaseVersion).apply()
+                            .putString("database_version", lastDatabaseVersion)
+                            .apply()
+                        Log.i("destinyreader", "Database OK")
                         goToMainDisplay()
                     }
                 }
@@ -271,15 +281,13 @@ class MainActivity : AppCompatActivity() {
         * Returns :
         *   Boolean : Is a download necessary?
         **/
-        val isDatabaseOnDevice: Boolean =
-            (File::exists)(File(applicationInfo.dataDir + "/databases/destiny_manifest.db"))
         val currentVersion: String = getSharedPreferences(
             "DestinyReaderPrefs",
             Context.MODE_PRIVATE
         ).getString("database_version", "") ?: ""
         Log.i("destinyreader", "Current version " + currentVersion)
         Log.i("destinyreader", "New version " + version)
-        return (currentVersion != version) || (!isDatabaseOnDevice)
+        return (currentVersion != version)
 
     }
 

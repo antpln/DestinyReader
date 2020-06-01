@@ -61,13 +61,13 @@ class LoreFragment : AbstractListFragment() {
 
         adapter.submitList(viewModel.itemsList.value)
 
-        viewModel.itemsList.observe(this, Observer {
+        viewModel.itemsList.observe(viewLifecycleOwner, Observer {
             it.let {
                 adapter.submitList(it)
             }
         })
 
-        viewModel.title.observe(this, Observer {
+        viewModel.title.observe(viewLifecycleOwner, Observer {
             (activity as AppCompatActivity).supportActionBar?.title = it
         })
 

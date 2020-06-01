@@ -1,6 +1,7 @@
 package com.plin.destinyreader.database
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
@@ -74,16 +75,23 @@ abstract class DestinyDatabase : RoomDatabase() {
                 if (instance == null) {
                     val databaseFile =
                         File(context.applicationInfo.dataDir + "/databases/destiny_manifest.db")
+                    Log.i("destinyreader", "Database found file : " + databaseFile.exists())
                     val destinationFile =
                         File(context.applicationInfo.dataDir + "/databases/manifest.db")
-                    if (destinationFile.exists()) {
+                    val sharedPrefs =
+                        context.getSharedPreferences("DestinyReaderPrefs", MODE_PRIVATE)
+                    val update = sharedPrefs.getBoolean("update", false)
+                    if (destinationFile.exists() && !update) {
+                        Log.i("destinyreader", "Database on device")
                         instance = Room.databaseBuilder(
                             context.applicationContext,
                             DestinyDatabase::class.java,
                             "manifest.db"
                         ).fallbackToDestructiveMigration().build()
+                        databaseFile.delete()
 
                     } else {
+                        Log.i("destinyreader", "Database has to be prepared")
                         instance = Room.databaseBuilder(
                             context.applicationContext,
                             DestinyDatabase::class.java,
@@ -92,6 +100,7 @@ abstract class DestinyDatabase : RoomDatabase() {
                             .createFromFile(databaseFile)
                             .fallbackToDestructiveMigration()
                             .build()
+                        sharedPrefs.edit().putBoolean("update", false).apply()
                     }
                     // Assign INSTANCE to the newly created database.
                     INSTANCE = instance

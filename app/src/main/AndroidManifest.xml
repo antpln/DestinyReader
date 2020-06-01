@@ -24,7 +24,9 @@
             android:label="@string/title_activity_reader"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Shadowkeep.NoActionBar" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

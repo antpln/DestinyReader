@@ -25,10 +25,6 @@ class ReaderFragment : Fragment() {
 
 
     private val MY_PREFS_NAME: String = "DestinyReaderPrefs"
-
-    companion object;
-
-
     private lateinit var viewModel: ReaderViewModel
     private lateinit var sharedPrefs: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor

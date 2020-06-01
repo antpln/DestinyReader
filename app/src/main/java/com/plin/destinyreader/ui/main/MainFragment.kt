@@ -31,7 +31,7 @@ open class MainFragment : AbstractListFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        Log.i("destinyreader", "MainFragment")
         val binding: MainFragmentBinding =
             DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
         binding.lifecycleOwner = this
@@ -54,7 +54,7 @@ open class MainFragment : AbstractListFragment() {
 
         adapter.submitList(viewModel.itemsList.value)
 
-        viewModel.itemsList.observe(this, Observer {
+        viewModel.itemsList.observe(viewLifecycleOwner, Observer {
             it.let {
                 adapter.submitList(it)
             }
